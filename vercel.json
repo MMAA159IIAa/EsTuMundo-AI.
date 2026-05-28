@@ -1,51 +1,27 @@
 {
   "version": 2,
   "cleanUrls": true,
-  "outputDirectory": ".",
+  "outputDirectory": "dist",
   "rewrites": [
     {
       "source": "/automind/(.*)",
-      "destination": "/apps/automind/dist/$1"
-    },
-    {
-      "source": "/automind",
-      "destination": "/apps/automind/dist/index.html"
+      "destination": "/automind/index.html"
     },
     {
       "source": "/beautly/(.*)",
-      "destination": "/apps/beautly/dist/$1"
-    },
-    {
-      "source": "/beautly",
-      "destination": "/apps/beautly/dist/index.html"
+      "destination": "/beautly/index.html"
     },
     {
       "source": "/estutanda/(.*)",
-      "destination": "/apps/estutanda/dist/$1"
-    },
-    {
-      "source": "/estutanda",
-      "destination": "/apps/estutanda/dist/index.html"
+      "destination": "/estutanda/index.html"
     },
     {
       "source": "/media-lab/(.*)",
-      "destination": "/apps/media-lab/dist/$1"
-    },
-    {
-      "source": "/media-lab",
-      "destination": "/apps/media-lab/dist/index.html"
+      "destination": "/media-lab/index.html"
     },
     {
       "source": "/taller-pro/(.*)",
-      "destination": "/apps/taller-pro/dist/$1"
-    },
-    {
-      "source": "/taller-pro",
-      "destination": "/apps/taller-pro/dist/index.html"
-    },
-    {
-      "source": "/(.*)",
-      "destination": "/apps/main-platform/dist/$1"
+      "destination": "/taller-pro/index.html"
     }
   ]
 }

@@ -17,7 +17,7 @@
     "dev:media": "npm run dev --workspace=apps/media-lab",
     "dev:estutanda": "npm run dev --workspace=apps/estutanda",
     "dev:api": "npm run dev --workspace=api/gateway",
-    "build": "npm run build --workspaces --if-present",
+    "build": "npm run build --workspaces --if-present && node scripts/merge-dist.js",
     "build:main": "npm run build --workspace=apps/main-platform",
     "build:automind": "npm run build --workspace=apps/automind",
     "build:taller": "npm run build --workspace=apps/taller-pro",

@@ -454,11 +454,11 @@ footer{background:var(--bg2);border-top:1px solid var(--b1);padding:60px 48px 36
   </svg>
 
   <div class="hero-z">
-    <div class="hero-badge"><div class="badge-dot"></div><span>ECOSISTEMA DE INTELIGENCIA ARTIFICIAL · ACTIVO</span></div>
-    <p class="hero-eyebrow">Tecnología · Automatización · Innovación · Futuro</p>
-    <h1 class="hero-h1"><span class="grad">ES TU MUNDO</span></h1>
-    <p class="hero-p1">El ecosistema donde la inteligencia artificial, la automatización y la innovación se convierten en soluciones reales.</p>
-    <p class="hero-p2">Construimos plataformas, agentes IA, automatizaciones y soluciones tecnológicas capaces de transformar industrias reales.</p>
+    <div class="hero-badge"><div class="badge-dot"></div><span>🚀 PROYECTO POSTULADO AL CONCURSO XPRIZE — BUILD WITH GEMINI 2026</span></div>
+    <p class="hero-eyebrow">Ecosistema Tecnológico Inteligente · Inteligencia Artificial · Automatización</p>
+    <h1 class="hero-h1"><span class="grad">ES TU MUNDO AI</span></h1>
+    <p class="hero-p1">El ecosistema tecnológico de nueva generación impulsado por IA y Google Gemini que transforma negocios tradicionales y mejora vidas.</p>
+    <p class="hero-p2">Combinamos automatización de nivel industrial, herramientas de salud comunitaria, ecotecnología sustentable y soluciones de branding en un entorno empresarial unificado y escalable.</p>
     <div class="hero-btns">
       <button class="btn-p" onclick="document.getElementById('divisiones').scrollIntoView({behavior:'smooth'})">Explorar Ecosistema</button>
       <a class="btn-s" href="#about">Nuestra Historia</a>
@@ -622,24 +622,24 @@ footer{background:var(--bg2);border-top:1px solid var(--b1);padding:60px 48px 36
 
     <!-- MODE SWITCHER -->
     <div class="rv" style="display:flex;gap:12px;justify-content:center;margin-bottom:36px">
-      <button id="mode-selfie-btn" onclick="setColorMode('selfie')" style="padding:12px 28px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:0.08em;cursor:pointer;font-family:var(--body);transition:all 0.3s;background:linear-gradient(135deg,#b83280,#ed64a6);color:white;border:none;box-shadow:0 0 20px rgba(237,100,166,0.4)">📸 Subir Selfie</button>
+      <button id="mode-selfie-btn" onclick="setColorMode('selfie'); document.getElementById('selfie-file-input').click()" style="padding:12px 28px;border-radius:100px;font-size:12px;font-weight:600;letter-spacing:0.08em;cursor:pointer;font-family:var(--body);transition:all 0.3s;background:linear-gradient(135deg,#b83280,#ed64a6);color:white;border:none;box-shadow:0 0 20px rgba(237,100,166,0.4)">📸 Subir Selfie</button>
       <button id="mode-manual-btn" onclick="setColorMode('manual')" style="padding:12px 28px;border-radius:100px;font-size:12px;font-weight:500;letter-spacing:0.08em;cursor:pointer;font-family:var(--body);transition:all 0.3s;background:rgba(255,255,255,0.06);border:1px solid rgba(237,100,166,0.3);color:var(--t2)">🎨 Seleccionar Manualmente</button>
     </div>
 
     <!-- SELFIE MODE -->
     <div id="color-selfie-mode" class="rv">
       <div style="max-width:560px;margin:0 auto">
-        <div id="selfie-drag-area" style="border:2px dashed rgba(237,100,166,0.3);background:rgba(255,255,255,0.02);border-radius:20px;padding:48px 24px;text-align:center;cursor:pointer;transition:all 0.3s" ondragover="event.preventDefault();this.style.borderColor='var(--pink)'" ondragleave="this.style.borderColor='rgba(237,100,166,0.3)'" ondrop="handleSelfieDrop(event)">
+        <div id="selfie-drag-area" style="border:2px dashed rgba(237,100,166,0.3);background:rgba(255,255,255,0.02);border-radius:20px;padding:48px 24px;text-align:center;cursor:pointer;transition:all 0.3s" ondragover="event.preventDefault();this.style.borderColor='var(--pink)'" ondragleave="this.style.borderColor='rgba(237,100,166,0.3)'" ondrop="handleSelfieDrop(event)" onclick="document.getElementById('selfie-file-input').click()">
           <div id="selfie-upload-content">
             <span style="font-size:48px;display:block;margin-bottom:16px">📸</span>
             <p style="font-size:14px;color:var(--t2);margin-bottom:8px">Arrastra tu selfie aquí o haz clic para buscar</p>
             <p style="font-size:11px;color:var(--t3)">Formatos JPG, PNG. Asegura buena iluminación natural.</p>
-            <input type="file" id="selfie-file-input" style="display:none" accept="image/*" onchange="handleSelfieFile(this)">
           </div>
           <div id="selfie-preview-wrap" style="display:none;position:relative">
             <img id="selfie-preview-img" style="max-height:240px;border-radius:12px;border:1px solid rgba(255,255,255,0.1)">
           </div>
         </div>
+        <input type="file" id="selfie-file-input" style="display:none" accept="image/*" onchange="handleSelfieFile(this)">
         <div id="selfie-analyze-row" style="display:none;margin-top:20px;text-align:center">
           <button class="btn-p" onclick="analyzeSelfie()" style="background:linear-gradient(135deg,#b83280,#ed64a6);box-shadow:0 0 30px rgba(237,100,166,0.4)">Ejecutar Análisis Colorimetría IA</button>
         </div>
