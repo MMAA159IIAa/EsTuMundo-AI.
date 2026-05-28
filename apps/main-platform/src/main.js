@@ -349,9 +349,14 @@ function renderCTA() {
       <div class="container">
         <h2>Ready to Build the <span class="text-gradient">Future</span>?</h2>
         <p>Join our ecosystem and leverage AI to transform your business.</p>
-        <div class="hero-actions">
-          <a href="https://github.com/EsTuMundo-AI" class="btn btn-primary btn-lg" target="_blank">⭐ Star on GitHub</a>
-          <a href="mailto:hello@estumundoai.com" class="btn btn-secondary btn-lg">Contact Us</a>
+        <div class="hero-actions" style="margin-bottom: 24px;">
+          <a href="https://github.com/MMAA159IIAa/EsTuMundo-AI." class="btn btn-primary btn-lg" target="_blank">⭐ Star on GitHub</a>
+          <a href="mailto:arturo.automind@gmail.com" class="btn btn-secondary btn-lg">Contact Us</a>
+        </div>
+        <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+          <a href="https://www.youtube.com/@ESTUMUNDOTECH" target="_blank" style="color: var(--text-muted); font-size: 0.9rem;">▶ YouTube</a>
+          <a href="https://www.tiktok.com/@es_tu_mundo.1" target="_blank" style="color: var(--text-muted); font-size: 0.9rem;">🎵 TikTok</a>
+          <a href="https://www.instagram.com/estumundo1/?hl=es" target="_blank" style="color: var(--text-muted); font-size: 0.9rem;">📸 Instagram</a>
         </div>
       </div>
     </section>
