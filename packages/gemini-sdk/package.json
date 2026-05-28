@@ -1,0 +1,13 @@
+{
+  "name": "@estumundo/gemini-sdk",
+  "version": "1.0.0",
+  "description": "Gemini AI integration SDK for Es Tu Mundo AI ecosystem",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js"
+  },
+  "dependencies": {
+    "@google/genai": "^1.0.0"
+  }
+}

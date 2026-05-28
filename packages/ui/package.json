@@ -1,0 +1,11 @@
+{
+  "name": "@estumundo/ui",
+  "version": "1.0.0",
+  "description": "Shared UI component library for Es Tu Mundo AI ecosystem",
+  "type": "module",
+  "main": "src/index.js",
+  "exports": {
+    ".": "./src/index.js",
+    "./styles": "./src/styles/design-system.css"
+  }
+}

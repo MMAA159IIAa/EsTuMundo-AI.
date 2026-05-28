@@ -1,0 +1,48 @@
+{
+  "name": "estumundo-ai-ecosystem",
+  "version": "1.0.0",
+  "description": "Es Tu Mundo AI — The Future is AI-Native. A complete AI startup ecosystem.",
+  "private": true,
+  "type": "module",
+  "workspaces": [
+    "apps/*",
+    "packages/*",
+    "api/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace=apps/main-platform",
+    "dev:automind": "npm run dev --workspace=apps/automind",
+    "dev:taller": "npm run dev --workspace=apps/taller-pro",
+    "dev:beautly": "npm run dev --workspace=apps/beautly",
+    "dev:media": "npm run dev --workspace=apps/media-lab",
+    "dev:estutanda": "npm run dev --workspace=apps/estutanda",
+    "dev:api": "npm run dev --workspace=api/gateway",
+    "build": "npm run build --workspaces --if-present",
+    "build:main": "npm run build --workspace=apps/main-platform",
+    "build:automind": "npm run build --workspace=apps/automind",
+    "build:taller": "npm run build --workspace=apps/taller-pro",
+    "build:beautly": "npm run build --workspace=apps/beautly",
+    "build:media": "npm run build --workspace=apps/media-lab",
+    "build:estutanda": "npm run build --workspace=apps/estutanda",
+    "lint": "echo 'Linting all workspaces...'",
+    "clean": "rimraf **/dist **/node_modules",
+    "prepare": "echo 'Ready to build!'"
+  },
+  "keywords": [
+    "ai",
+    "gemini",
+    "startup",
+    "ecosystem",
+    "saas",
+    "automation",
+    "ecommerce",
+    "media",
+    "xprize"
+  ],
+  "author": "Es Tu Mundo AI <hello@estumundoai.com>",
+  "license": "MIT",
+  "engines": {
+    "node": ">=18.0.0",
+    "npm": ">=9.0.0"
+  }
+}

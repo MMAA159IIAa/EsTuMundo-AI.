@@ -1,0 +1,14 @@
+{
+  "name": "estumundo-medialab",
+  "version": "1.0.0",
+  "description": "AI Media Lab — AI music, video and voice synthesis studio",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "vite": "^6.0.0"
+  }
+}
