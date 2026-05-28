@@ -149,14 +149,14 @@ function renderDivisions() {
         </div>
         <div class="divisions-grid">
           ${divisions.map(d => `
-            <div class="division-card reveal" data-division="${d.id}">
+            <a href="/${d.id === 'taller' ? 'taller-pro' : d.id === 'platform' ? '#' : d.id}" class="division-card reveal" style="text-decoration: none; color: inherit; display: block;" data-division="${d.id}">
               <div class="division-icon">${d.icon}</div>
               <h3>${d.name}</h3>
               <p>${d.description}</p>
               <div class="division-tags">
                 ${d.tags.map(t => `<span class="division-tag">${t}</span>`).join('')}
               </div>
-            </div>
+            </a>
           `).join('')}
         </div>
       </div>
