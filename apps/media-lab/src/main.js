@@ -9,6 +9,7 @@ let activeTab = 'music';
 let visualizerInterval = null;
 let generatingMusic = false;
 let generatingVideo = false;
+let balance = 20.00;
 
 function render() {
   app.innerHTML = `
@@ -76,7 +77,14 @@ function renderTopBar() {
           Multi-modal content generation engine powered by Google Gemini.
         </p>
       </div>
-      <div style="display: flex; gap: 12px;">
+      <div style="display: flex; gap: 12px; align-items: center;">
+        <div style="background: rgba(0, 245, 255, 0.08); border: 1px solid rgba(0, 245, 255, 0.2); padding: 8px 16px; border-radius: 8px; display: flex; align-items: center; gap: 8px;">
+          <span style="font-size: 0.75rem; text-transform: uppercase; color: var(--text-dim); font-family: monospace;">Saldo:</span>
+          <strong id="balance-val" style="color: #00f5ff; font-family: monospace; font-size: 1rem;">$${balance.toFixed(2)} MXN</strong>
+        </div>
+        <button class="btn" id="btn-recharge" style="background: linear-gradient(135deg, #10b981, #059669); color: #fff;">
+          ⚡ Recargar $20 MXN
+        </button>
         <button class="btn" style="background: rgba(255,255,255,0.05); border: 1px solid var(--surface-border); color: #fff;">
           ⚡ System Ready
         </button>
@@ -103,6 +111,7 @@ function renderMusicGenerator() {
     <div class="panel">
       <div class="panel-header">
         <h3>🎵 AI Music & Voice Synthesizer</h3>
+        <span style="font-size: 0.8rem; color: var(--text-dim);">Costo: $5.00 MXN</span>
       </div>
       <div class="control-group">
         <label>Describa el estilo musical / ritmo deseado</label>
@@ -116,7 +125,7 @@ function renderMusicGenerator() {
           <option value="gemini">Gemini Voice Core - Autómata</option>
         </select>
       </div>
-      <button class="btn" id="btn-generate-music">Generar Pista de Audio</button>
+      <button class="btn" id="btn-generate-music">Generar Pista de Audio ($5.00 MXN)</button>
     </div>
   `;
 }
@@ -126,6 +135,7 @@ function renderVideoGenerator() {
     <div class="panel">
       <div class="panel-header">
         <h3>🎥 Cinematic Video Generator</h3>
+        <span style="font-size: 0.8rem; color: var(--text-dim);">Costo: $10.00 MXN</span>
       </div>
       <div class="control-group">
         <label>Indicaciones del Prompt de Video</label>
@@ -148,7 +158,7 @@ function renderVideoGenerator() {
           </select>
         </div>
       </div>
-      <button class="btn" id="btn-generate-video">Renderizar Escena de Video</button>
+      <button class="btn" id="btn-generate-video">Renderizar Escena de Video ($10.00 MXN)</button>
     </div>
   `;
 }
@@ -207,6 +217,7 @@ function attachEventListeners() {
 
   const btnMusic = document.getElementById('btn-generate-music');
   const btnVideo = document.getElementById('btn-generate-video');
+  const btnRecharge = document.getElementById('btn-recharge');
 
   if (tabMusic) tabMusic.addEventListener('click', () => { activeTab = 'music'; render(); });
   if (tabVideo) tabVideo.addEventListener('click', () => { activeTab = 'video'; render(); });
@@ -215,7 +226,55 @@ function attachEventListeners() {
 
   if (btnMusic) btnMusic.addEventListener('click', startMusicGeneration);
   if (btnVideo) btnVideo.addEventListener('click', startVideoGeneration);
+  if (btnRecharge) btnRecharge.addEventListener('click', showRechargeModal);
 }
+
+function updateBalanceDOM() {
+  const val = document.getElementById('balance-val');
+  if (val) val.textContent = `$${balance.toFixed(2)} MXN`;
+}
+
+function showRechargeModal() {
+  let modal = document.getElementById('recharge-modal');
+  if (!modal) {
+    modal = document.createElement('div');
+    modal.id = 'recharge-modal';
+    modal.className = 'modal-overlay';
+    document.body.appendChild(modal);
+  }
+  modal.innerHTML = `
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>⚡ Recargar Saldo — Es Tu Mundo AI</h3>
+        <span class="modal-close" onclick="closeRechargeModal()">&times;</span>
+      </div>
+      <div class="modal-body" style="font-family: 'Inter', sans-serif;">
+        <p style="margin-bottom: 16px; font-size: 0.95rem; line-height: 1.5; color: var(--text-dim);">Para continuar generando pistas y renderizando videos premium con Gemini, necesitas saldo en tu cuenta.</p>
+        <div style="background: rgba(255,255,255,0.03); border: 1px solid var(--surface-border); padding: 18px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+          <div style="font-size: 0.75rem; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.05em;">Paquete Recomendado</div>
+          <div style="font-size: 1.8rem; font-weight: 800; color: #00f5ff; margin: 10px 0;">$20.00 MXN</div>
+          <div style="font-size: 0.85rem; color: var(--text-dim);">Te rinde para <strong>2 Videos Cinemáticos</strong> o <strong>4 Pistas de Audio</strong></div>
+        </div>
+        <button class="btn" onclick="simulatePayment(20)" style="width: 100%; background: linear-gradient(135deg, #10b981, #059669); font-weight: 600; padding: 14px;">
+          💳 Simular Pago $20.00 MXN con Stripe / Mercado Pago
+        </button>
+      </div>
+    </div>
+  `;
+  modal.style.display = 'flex';
+}
+
+window.closeRechargeModal = function() {
+  const modal = document.getElementById('recharge-modal');
+  if (modal) modal.style.display = 'none';
+};
+
+window.simulatePayment = function(amount) {
+  balance += amount;
+  updateBalanceDOM();
+  alert(`✓ ¡Pago simulado exitosamente! Se han abonado $${amount.toFixed(2)} MXN a tu cuenta.`);
+  closeRechargeModal();
+};
 
 function startMusicGeneration() {
   const prompt = document.getElementById('music-prompt').value.trim();
@@ -223,7 +282,14 @@ function startMusicGeneration() {
     alert('Por favor introduce un prompt de música primero.');
     return;
   }
+  if (balance < 5) {
+    alert('Saldo insuficiente ($5.00 MXN requeridos). Por favor haz clic en "Recargar $20 MXN" para continuar.');
+    showRechargeModal();
+    return;
+  }
 
+  balance -= 5;
+  updateBalanceDOM();
   generatingMusic = true;
   document.getElementById('visualizer-status').innerHTML = 'Generando ritmo y sintetizadores con Gemini Engine...';
   
@@ -242,7 +308,7 @@ function startMusicGeneration() {
     clearInterval(visualizerInterval);
     generatingMusic = false;
     document.getElementById('visualizer-status').innerHTML = `
-      <span style="color: #4ade80;">✓ Generación de audio completada.</span><br/>
+      <span style="color: #4ade80;">✓ Generación de audio completada (Costo: $5.00 MXN).</span><br/>
       Archivo: <strong>Corrido_Sintetico_${Date.now().toString().slice(-4)}.mp3</strong>
     `;
     const bars = document.querySelectorAll('.wave-bar');
@@ -256,7 +322,14 @@ function startVideoGeneration() {
     alert('Por favor introduce un prompt de video primero.');
     return;
   }
+  if (balance < 10) {
+    alert('Saldo insuficiente ($10.00 MXN requeridos). Por favor haz clic en "Recargar $20 MXN" para continuar.');
+    showRechargeModal();
+    return;
+  }
 
+  balance -= 10;
+  updateBalanceDOM();
   generatingVideo = true;
   document.getElementById('visualizer-status').innerHTML = 'Iniciando pipeline de renderizado de video AI...';
   
@@ -275,7 +348,7 @@ function startVideoGeneration() {
     clearInterval(visualizerInterval);
     generatingVideo = false;
     document.getElementById('visualizer-status').innerHTML = `
-      <span style="color: #00f5ff;">✓ Renderizado de escena finalizado (1080x1920).</span><br/>
+      <span style="color: #00f5ff;">✓ Renderizado de escena finalizado (Costo: $10.00 MXN).</span><br/>
       Archivo: <strong>Scene_Cinematic_${Date.now().toString().slice(-4)}.mp4</strong>
     `;
     const bars = document.querySelectorAll('.wave-bar');

@@ -288,3 +288,52 @@ body {
     grid-template-columns: 1fr;
   }
 }
+
+/* Modal Recharge CSS */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  z-index: 1000;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.modal-box {
+  background: #0f0f15;
+  border: 1px solid rgba(0, 245, 255, 0.25);
+  border-radius: var(--radius-lg);
+  padding: 32px;
+  max-width: 480px;
+  width: 100%;
+  box-shadow: 0 0 50px rgba(0, 245, 255, 0.15);
+  position: relative;
+  animation: modalFadeIn 0.3s ease;
+}
+@keyframes modalFadeIn {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid var(--surface-border);
+  padding-bottom: 12px;
+}
+.modal-header h3 {
+  font-family: var(--font-title);
+  color: #00f5ff;
+}
+.modal-close {
+  font-size: 1.5rem;
+  cursor: pointer;
+  color: var(--text-dim);
+  transition: color 0.2s;
+}
+.modal-close:hover {
+  color: #fff;
+}
