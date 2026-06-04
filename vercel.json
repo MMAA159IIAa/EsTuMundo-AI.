@@ -12,6 +12,10 @@
       "destination": "/beautly/index.html"
     },
     {
+      "source": "/estutanda/dist/(.*)",
+      "destination": "/estutanda/dist/index.html"
+    },
+    {
       "source": "/estutanda/(.*)",
       "destination": "/estutanda/index.html"
     },

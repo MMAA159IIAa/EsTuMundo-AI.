@@ -1,17 +1,292 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EsTuTanda — Digitalización de Ahorro Colectivo</title>
-  <meta name="description" content="EsTuTanda — Plataforma Fintech inteligente de ahorro rotativo y confianza financiera en Latinoamérica, parte del ecosistema Es Tu Mundo AI." />
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./src/styles/estutanda.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EsTuTanda | El Ahorro que Nunca se Detiene</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #10b981;
+            --primary-dark: #059669;
+            --accent: #fbbf24;
+            --bg-dark: #0f172a;
+            --glass: rgba(255, 255, 255, 0.05);
+            --glass-border: rgba(255, 255, 255, 0.1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { 
+            font-family: 'Outfit', sans-serif; 
+            background-color: var(--bg-dark); 
+            color: #f1f5f9;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- BACKGROUND ANNIMATIONS --- */
+        .bg-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 10% 20%, rgba(16, 185, 129, 0.08) 0%, transparent 40%),
+                        radial-gradient(circle at 90% 80%, rgba(59, 130, 246, 0.05) 0%, transparent 40%);
+            z-index: -1;
+        }
+
+        /* --- HEADER --- */
+        header {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            position: sticky;
+            top: 0;
+            backdrop-filter: blur(10px);
+            z-index: 100;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-weight: 800;
+            font-size: 1.75rem;
+            color: #fff;
+            text-decoration: none;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span { color: var(--primary); }
+
+        .btn-app {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: #fff;
+            padding: 0.8rem 1.8rem;
+            border-radius: 1rem;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.2);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .btn-app:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 15px 30px rgba(16, 185, 129, 0.3);
+        }
+
+        /* --- HERO --- */
+        .hero {
+            padding: 8rem 2rem 4rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .badge {
+            background: var(--glass);
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--primary);
+            border: 1px solid var(--glass-border);
+            margin-bottom: 2rem;
+            display: inline-block;
+        }
+
+        h1 {
+            font-size: clamp(3rem, 8vw, 5rem);
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 2rem;
+            letter-spacing: -2px;
+        }
+
+        h1 span {
+            background: linear-gradient(to right, #fff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        h1 .highlight {
+            background: linear-gradient(to right, var(--primary), #60a5fa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            max-width: 700px;
+            margin: 0 auto 3rem;
+        }
+
+        /* --- CTA SECTION --- */
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        .main-cta {
+            font-size: 1.5rem;
+            padding: 1.2rem 3.5rem;
+            border-radius: 1.5rem;
+            background: #fff;
+            color: var(--bg-dark);
+            font-weight: 900;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .main-cta:hover {
+            transform: scale(1.05) rotate(-1deg);
+            background: var(--primary);
+            color: #fff;
+        }
+
+        .store-links {
+            display: flex;
+            gap: 1rem;
+            opacity: 0.6;
+        }
+
+        /* --- FEATURES --- */
+        .features {
+            padding: 6rem 2rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--glass-border);
+            padding: 3rem;
+            border-radius: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover { border-color: var(--primary); }
+
+        .card-icon { font-size: 3rem; margin-bottom: 2rem; display: block; }
+        .card h3 { font-size: 1.75rem; font-weight: 800; margin-bottom: 1rem; color: #fff; }
+        .card p { color: #94a3b8; font-weight: 500; }
+
+        /* --- PROTECCION BANNER --- */
+        .protection {
+            margin: 4rem 2rem;
+            background: linear-gradient(90deg, rgba(16, 185, 129, 0.1), transparent);
+            padding: 4rem;
+            border-radius: 3rem;
+            border: 1px solid var(--glass-border);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            align-items: center;
+            max-width: 1200px;
+            margin: 4rem auto;
+        }
+
+        .protection-info { flex: 1; min-width: 300px; }
+        .protection-info h2 { font-size: 2.5rem; font-weight: 900; margin-bottom: 1.5rem; color: var(--primary); }
+        .protection-info p { font-size: 1.2rem; color: #94a3b8; }
+
+        .stripe-badge {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 1.5rem;
+            display: flex;
+            justify-content: center;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 3rem; }
+            .hero { padding-top: 4rem; }
+            .protection { padding: 2rem; }
+        }
+    </style>
 </head>
 <body>
-  <div id="app"></div>
-  <script type="module" src="./src/main.js"></script>
+    <div class="bg-glow"></div>
+
+    <header>
+        <a href="#" class="logo">
+            🛡️ <span>EsTu</span>Tanda
+        </a>
+        <a href="#app" class="btn-app uppercase">Usar Web App</a>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="badge">✨ Respaldado por el Fondo de Garantía Inteligente</div>
+            <h1>
+                <span>Tus ahorros</span><br/>
+                <span class="highlight">Blindados al 100%</span>
+            </h1>
+            <p>
+                La primera plataforma donde tu tanda nunca se detiene. Si alguien falla, el sistema cubre el pago automáticamente. Unimos la confianza de tu grupo con la seguridad de la tecnología.
+            </p>
+            
+            <div class="cta-group" id="app">
+                <a href="./dist/index.html" class="main-cta">
+                    ACCEDER A LA WEB APP
+                    <span>→</span>
+                </a>
+                <p style="color: #64748b; font-weight: 600;">Sin descargas. Sin esperas. Entra ahora.</p>
+                
+                <div class="store-links">
+                    <span>📱 Próximamente en iOS & Android</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="features">
+            <div class="card" style="background: rgba(16, 185, 129, 0.05); border-color: rgba(16, 185, 129, 0.2);">
+                <span class="card-icon">🚗</span>
+                <h3>Tecnología Automotriz</h3>
+                <p>Equipa tu taller con la potencia de <b>AUTOmind AI</b>. Ahorra en grupo para adquirir tecnología de diagnóstico de élite y alineación electrónica.</p>
+            </div>
+            <div class="card">
+                <span class="card-icon">🚀</span>
+                <h3>Crea en segundos</h3>
+                <p>Configura tu monto, duración y participantes. Envía un enlace por WhatsApp y comienza a ahorrar juntos.</p>
+            </div>
+            <div class="card">
+                <span class="card-icon">💳</span>
+                <h3>Cargos Automáticos</h3>
+                <p>Olvídate de cobrar. El sistema procesa los pagos semanalmente desde las tarjetas de los participantes.</p>
+            </div>
+            <div class="card" style="background: rgba(251, 191, 36, 0.05); border-color: rgba(251, 191, 36, 0.2);">
+                <span class="card-icon">🛡️</span>
+                <h3>Fondo de Protección</h3>
+                <p>Nuestra tecnología garantiza que siempre recibas tu dinero a tiempo, pase lo que pase.</p>
+            </div>
+        </section>
+
+        <section class="protection">
+            <div class="protection-info">
+                <h2>Seguridad Bancaria</h2>
+                <p>Todos los pagos son procesados a través de la infraestructura global de Stripe, garantizando máxima protección para tus datos y tu dinero.</p>
+            </div>
+            <div class="stripe-badge">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/b/ba/Stripe_Logo%2C_revised_2016.svg" alt="Stripe" width="120">
+            </div>
+        </section>
+    </main>
+
+    <footer style="padding: 4rem; text-align: center; color: #475569; font-weight: 600;">
+        &copy; 2026 EsTuTanda. Todos los derechos reservados.
+    </footer>
 </body>
 </html>
